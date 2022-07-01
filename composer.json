@@ -1,0 +1,28 @@
+{
+    "name": "jgodstime/laravel-error-notifier",
+    "description": "Error notification for laravel",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Godstime john"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    },
+
+    "autoload": {
+        "psr-4": {
+            "ErrorNotifier\\Notify\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ErrorNotifier\\Notify\\ErrorNotifierServiceProvider"
+            ]
+        }
+    }
+
+}
