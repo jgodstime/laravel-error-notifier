@@ -2,6 +2,8 @@
 
 This package allows users to send you messages via email whenever they get 500 internal server errors.
 
+![alt text](https://img001.prntscr.com/file/img001/Zirxkel4QF-IDBFV5v1veA.png)
+
 
 ## What the package sends as a notification
 - Last route the user visited  
@@ -28,13 +30,16 @@ If you already have a 500.blade.php file in your */views/errors* folder and you 
     php artisan vendor:publish --provider="ErrorNotifier\Notify\ErrorNotifierServiceProvider"
 
 *Now the vendor files are published in their respective paths*
-**Let's test**
-To test this, simpe add laravel `abort(500)` method in one of your routes, then hit the route In your browser.
+### Let's test
+To test this, simply add laravel `abort(500)` method in one of your routes, then hit the route In your browser.
 
     Route::get('/convert/file',  function(){
 	    abort(500);
     });
-You should see this, image here
+
+**You should see this**
+![alt text](https://img001.prntscr.com/file/img001/Zirxkel4QF-IDBFV5v1veA.png)
+
 
 
 > Don't forget to configure your email driver, you can use [mailtrap](https://mailtrap.io/) for test purpose.
@@ -48,7 +53,7 @@ You should see this, image here
     MAIL_FROM_ADDRESS=mygoogle@gmail.com
     MAIL_FROM_NAME="${APP_NAME}"
 
-**Modify Page Design**
+### Modify Page Design
 You can modify the style for the page to suit your taste, 
 > **Note:** Be careful not to change the **form route** and **hidden inputs**.
 
@@ -56,17 +61,17 @@ A notification email is sent to the email specified in the laravel environment v
   
 You can change this by adding `NOTIFIER_EMAIL="hello@example.com"` in your .env file.  
 
- **Send Email to Multiple Recipients**
+### Send Email to Multiple Recipients
  You can send notification to multiple recipients by adding multiple emails as a string in comma separated format without space
 
     NOTIFIER_EMAIL="hello1@example.com,hello2@example.com"
 
- **Change Redirect Page URL**
+### Change Redirect Page URL
 You can change the page  user is taken to after submitting the form, by default it goes to the home page (/)  
 
     NOTIFIER_REDIRECT_URL='/thank-you'
 
-**Display Message on The Redirected Page**
+### Display Message on The Redirected Page
 To display message on the redirected page after form is submitted, add the below code in the page
 
     @if(session()->has('success'))  
