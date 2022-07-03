@@ -41,7 +41,7 @@ class NotifierNotification extends Notification
     {
         return (new MailMessage)->view(
             'notifier::emails.index', ['data' => $this->data]
-        )->subject(ucfirst(config('app.name')).' Notifier');
+        )->subject(ucfirst(config('notifier.name')).' Notifier');
     }
 
     /**
