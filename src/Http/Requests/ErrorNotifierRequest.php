@@ -31,6 +31,8 @@ class ErrorNotifierRequest extends FormRequest
             'email' => 'nullable',
             'status_code' => 'nullable',
             'message' => 'required|string',
+            'notifier_message' => 'nullable|string',
+            'notifier_data' => 'nullable|string'
         ];
     }
 }

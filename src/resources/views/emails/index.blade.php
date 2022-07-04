@@ -424,7 +424,7 @@
   <![endif]-->
   </head>
   <body>
-    <span class="preheader">{{ ucfirst(config('app.name'))  }}</span>
+    <span class="preheader">{{ ucfirst(config('notifier.name'))  }}</span>
     <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
       <tr>
         <td align="center">
@@ -432,7 +432,7 @@
             <tr>
               <td class="email-masthead">
                 <a href="#" style="font-size: 30px; color: #4a4a4e;" class="f-fallback email-masthead_name">
-                {{ ucfirst(config('app.name'))  }} Error Report
+                {{ ucfirst(config('notifier.name'))  }} Error Report
               </a>
               </td>
             </tr>
@@ -451,16 +451,21 @@
                         <table class="discount" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                           <tr>
                             <td align="left">
-                              {{-- <h1 class="f-fallback discount_heading"> {{ ucfirst(config('app.name')) }} Error Report</h1> --}}
+                              {{-- <h1 class="f-fallback discount_heading"> {{ ucfirst(config('notifier.name')) }} Error Report</h1> --}}
                               <p class="f-fallback discount_body"> <strong>Status Code:</strong> <span>{{$data['status_code']}}</span> </p>
                               <p class="f-fallback discount_body"> <strong>Access URL:</strong> <span>{{$data['access_url']}}</span> </p>
 
                               <p class="f-fallback discount_body"><strong>Is Authenticated:</strong>   <span>{{$data['is_authenticated'] == '1' ? 'Yes' : 'No' }}</span> </p>
-                              @if (!empty($data['is_authenticated']))
+                              @if ($data['is_authenticated'] == 'yes')
                                 <p class="f-fallback discount_body"><strong>ID:</strong>  <span>{{$data['id']}}</span> </p>
                                 <p class="f-fallback discount_body"><strong>Email:</strong>  <span>{{$data['email']}}</span> </p>
                               @endif
-                              <p class="f-fallback discount_body"><strong>Message:</strong> <br>   <span>{{$data['message']}}</span> </p>
+
+                              @if (isset($data['message']))
+                                <p class="f-fallback discount_body"><strong>Message:</strong> <br>   <span>{{$data['message']}}</span> </p>
+                              @endif
+
+                              <p class="f-fallback discount_body"><strong>Trace:</strong> <br>   <span>{{$data['trace']}}</span> </p>
 
 
                             </td>
@@ -487,7 +492,7 @@
                 <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
                   <tr>
                     <td class="content-cell" align="center">
-                      <p  class="f-fallback sub align-center">&copy; {{ ucfirst(config('app.name')) }}. All rights reserved.</p>
+                      <p  class="f-fallback sub align-center">&copy; {{ ucfirst(config('notifier.name')) }}. All rights reserved.</p>
 
                     </td>
                   </tr>
