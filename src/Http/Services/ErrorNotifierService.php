@@ -14,7 +14,7 @@ class ErrorNotifierService{
             return ;
         }
 
-        if(config('notifier.channels.slack.url') || config('notifier.email')){
+        if(config('notifier.channels.slack.url') || config('notifier.channels.mail.address')){
             $errorLogs = collect([
                 [
                     'file' => $e->getFile(),
