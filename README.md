@@ -91,7 +91,7 @@ To test this, simply add `$array['key1'] = 'john'; $data  = $array['key2'];` in 
     });
 ```
 
-Notice that we are trying to access an array with key2 that doesn’t exist, this will throw an error and the package will send the error as notification ro your email as well as the trace.
+Notice that we are trying to access an array with key2 that doesn’t exist, this will throw an error and the package will send the error as notification to your email as well as the trace.
 
 Also, you must turn `APP_DEBUG=false` in your .env file
 
