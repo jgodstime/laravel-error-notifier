@@ -69,7 +69,7 @@ If you already have a 500.blade.php file in your */views/errors* folder and you 
     LOG_SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T....
 
 ### We are good 😊 
-To test this, simply add laravel `abort(500)` method in one of your routes, then hit the route In your browser.
+To test this, simply add `$array['key1'] = 'john'; $data  = $array['key2'];` in one of your routes, then hit the route In your browser.
 
 
     Route::get('/convert/file', function(){
