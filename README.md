@@ -72,10 +72,13 @@ To test this, simply add laravel `abort(500)` method in one of your routes, then
 
 
     Route::get('/convert/file', function(){
-    	abort(500);
+    	 $array['key1'] = 'john';
+        $data  = $array['key2'];
     });
 
-You must turn `APP_DEBUG=false` in your .env file
+Notice that we are trying to access an array with key2 that doesn’t exist, this will throw an error and the package will send the error as notification ro your email as well as the trace.
+
+Also, you must turn `APP_DEBUG=false` in your .env file
 
 **You should see this**
 
