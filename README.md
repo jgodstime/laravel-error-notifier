@@ -2,6 +2,7 @@
 # Error Notification For Laravel
 
 This package sends you email and slack notification whenever 500 internal server errors happens in your application.
+This package only works for laravel 8 and 9
   
 
 ![alt text](https://img001.prntscr.com/file/img001/Zirxkel4QF-IDBFV5v1veA.png)
