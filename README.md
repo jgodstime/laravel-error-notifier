@@ -20,10 +20,14 @@ This package only works for laravel 8 and 9
 
 ## How to install
 
-    composer require jgodstime/laravel-error-notifier
+```
+composer require jgodstime/laravel-error-notifier
+
+```
 
 In your */app/Exceptions/Handler.php* file, in the register method, add `\ErrorNotifier\Notify\Helper::getError($e);` this must be  inside  reportable callback
 
+```php
     public function register()
     {
     	$this->reportable(function (Throwable  $e)  {
@@ -31,9 +35,11 @@ In your */app/Exceptions/Handler.php* file, in the register method, add `\ErrorN
     	});
     }
 
+```
+
 ## Disable  Instant Notification 
  
- By default this package sends notification immediately the error occured i.e without waiting for users description of the error, you can disable this by adding `NOTIFIER_INSTANT=false` in your .env file
+By default this package sends notification immediately the error occured i.e without waiting for users description of the error, you can disable this by adding `NOTIFIER_INSTANT=false` in your .env file
  
 ### Publishing the vendor files
 
@@ -45,7 +51,9 @@ If you already have a 500.blade.php file in your */views/errors* folder and you 
 
 ### Publish the vendor files
 
-    php artisan vendor:publish --provider="ErrorNotifier\Notify\ErrorNotifierServiceProvider"
+```
+php artisan vendor:publish --provider="ErrorNotifier\Notify\ErrorNotifierServiceProvider"
+```
 
 *Now the vendor files are published in their respective paths*
 
@@ -54,6 +62,7 @@ If you already have a 500.blade.php file in your */views/errors* folder and you 
 ### Setup your email driver
 > To setup your email driver, you can use [mailtrap](https://mailtrap.io/) for test purpose.
 
+```
     MAIL_DRIVER=smtp
     MAIL_HOST=smtp.mailtrap.io
     MAIL_PORT=587
@@ -62,20 +71,25 @@ If you already have a 500.blade.php file in your */views/errors* folder and you 
     MAIL_ENCRYPTION=tls
     MAIL_FROM_ADDRESS=mygoogle@gmail.com
     MAIL_FROM_NAME="${APP_NAME}"
+```
 
 ### Add your slack webhook (Optional)
 > To setup your  [slack](https://api.slack.com/messaging/webhooks)  webhook url
 
-    LOG_SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T....
+``` 
+LOG_SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T....
+
+```
 
 ### We are good 😊 
 To test this, simply add `$array['key1'] = 'john'; $data  = $array['key2'];` in one of your routes, then hit the route In your browser.
 
-
+```php
     Route::get('/convert/file', function(){
     	 $array['key1'] = 'john';
         $data  = $array['key2'];
     });
+```
 
 Notice that we are trying to access an array with key2 that doesn’t exist, this will throw an error and the package will send the error as notification ro your email as well as the trace.
 
@@ -102,8 +116,9 @@ You can change this by adding `NOTIFIER_EMAIL="hello@example.com"` in your .env 
 
 You can send notification to multiple recipients by adding multiple emails as a string in comma separated format without space
 
-    NOTIFIER_EMAIL="hello1@example.com,hello2@example.com"
-
+```
+NOTIFIER_EMAIL="hello1@example.com,hello2@example.com"
+```
 
 ### Change Redirect Page URL
 
