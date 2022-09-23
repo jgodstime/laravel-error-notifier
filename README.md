@@ -20,7 +20,10 @@ This package only works for laravel 8 and 9
 
 ## How to install
 
-    composer require jgodstime/laravel-error-notifier
+```
+composer require jgodstime/laravel-error-notifier
+
+```
 
 In your */app/Exceptions/Handler.php* file, in the register method, add `\ErrorNotifier\Notify\Helper::getError($e);` this must be  inside  reportable callback
 
@@ -36,7 +39,7 @@ In your */app/Exceptions/Handler.php* file, in the register method, add `\ErrorN
 
 ## Disable  Instant Notification 
  
- By default this package sends notification immediately the error occured i.e without waiting for users description of the error, you can disable this by adding `NOTIFIER_INSTANT=false` in your .env file
+By default this package sends notification immediately the error occured i.e without waiting for users description of the error, you can disable this by adding `NOTIFIER_INSTANT=false` in your .env file
  
 ### Publishing the vendor files
 
@@ -48,7 +51,9 @@ If you already have a 500.blade.php file in your */views/errors* folder and you 
 
 ### Publish the vendor files
 
-    php artisan vendor:publish --provider="ErrorNotifier\Notify\ErrorNotifierServiceProvider"
+```
+php artisan vendor:publish --provider="ErrorNotifier\Notify\ErrorNotifierServiceProvider"
+```
 
 *Now the vendor files are published in their respective paths*
 
