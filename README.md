@@ -70,9 +70,12 @@ If you already have a 500.blade.php file in your */views/errors* folder and you 
 ### We are good 😊 
 To test this, simply add laravel `abort(500)` method in one of your routes, then hit the route In your browser.
 
+
     Route::get('/convert/file', function(){
     	abort(500);
     });
+
+You must turn `APP_DEBUG=false` in your .env file
 
 **You should see this**
 
