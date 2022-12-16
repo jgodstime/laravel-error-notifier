@@ -1,9 +1,9 @@
 <?php
 namespace ErrorNotifier\Notify\Http\Services;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use ErrorNotifier\Notify\Notifications\NotifierNotification;
+use Illuminate\Support\Facades\Notification;
 
 class ErrorNotifierService{
 
@@ -64,12 +64,8 @@ class ErrorNotifierService{
     public function sendToEmail($emails, array $data)
     {
         foreach ($emails as $key => $email) {
-            (new User)->forceFill([
-                'name' => config('app.name'),
-                'email' => $email,
-            ])->notify(new NotifierNotification($data));
+            Notification::route('mail', $email)->notify(new NotifierNotification($data));
         }
-
     }
 
 
