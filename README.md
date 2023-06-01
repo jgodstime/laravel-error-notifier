@@ -64,7 +64,7 @@ php artisan vendor:publish --provider="ErrorNotifier\Notify\ErrorNotifierService
 
 ```
     MAIL_DRIVER=smtp
-    MAIL_HOST=smtp.mailtrap.io
+    MAIL_HOST=sandbox.smtp.mailtrap.io
     MAIL_PORT=587
     MAIL_USERNAME=528a733...
     MAIL_PASSWORD=73c29...
@@ -73,7 +73,7 @@ php artisan vendor:publish --provider="ErrorNotifier\Notify\ErrorNotifierService
     MAIL_FROM_NAME="${APP_NAME}"
 ```
 ### Disable notification to email
-> To disable notification to email set `NOTIFIER_EMAIL=` in your .env file
+> To disable notification to email, set `NOTIFIER_EMAIL=` in your .env file
 
 
 ### Add your slack webhook (Optional)
