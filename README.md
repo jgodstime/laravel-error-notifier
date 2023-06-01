@@ -72,6 +72,9 @@ php artisan vendor:publish --provider="ErrorNotifier\Notify\ErrorNotifierService
     MAIL_FROM_ADDRESS=mygoogle@gmail.com
     MAIL_FROM_NAME="${APP_NAME}"
 ```
+### Disable notification to email
+> To disable notification to email set `NOTIFIER_EMAIL=` in your .env file
+
 
 ### Add your slack webhook (Optional)
 > To setup your  [slack](https://api.slack.com/messaging/webhooks)  webhook url
@@ -93,7 +96,7 @@ To test this, simply add `$array['key1'] = 'john'; $data  = $array['key2'];` in 
 
 Notice that we are trying to access an array with key2 that doesn’t exist, this will throw an error and the package will send the error as notification to your email as well as the trace.
 
-Also, you must turn `APP_DEBUG=false` in your .env file
+Also, you must turn `APP_DEBUG=false` and `LOG_LEVEL=debug` in your .env file
 
 **You should see this**
 
