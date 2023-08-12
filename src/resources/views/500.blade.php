@@ -127,9 +127,10 @@
                     <input type="hidden" name="is_authenticated" value="{{ auth()->check() }}">
                     <input type="hidden" name="id" value="{{ auth()->check() ? auth()->id() : null }}">
                     <input type="hidden" name="email" value="{{ auth()->check() ? auth()->user()->email : null }}">
-                    <input type="hidden" name="status_code" value="500">
                     <input type="hidden" name="notifier_message" value="{{ session()->get('error_notifier_package_message_123') }}">
                     <input type="hidden" name="notifier_data" value="{{ session()->get('error_notifier_package_data_123') }}">
+                    <input type="hidden" name="notifier_file" value="{{ session()->get('error_notifier_package_file_123') }}">
+                    <input type="hidden" name="notifier_line" value="{{ session()->get('error_notifier_package_line_123') }}">
 
 
                     <div class="text-end mt-2">

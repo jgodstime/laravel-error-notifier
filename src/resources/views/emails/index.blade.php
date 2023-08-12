@@ -451,19 +451,20 @@
                         <table class="discount" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                           <tr>
                             <td align="left">
-                              {{-- <h1 class="f-fallback discount_heading"> {{ ucfirst(config('notifier.name')) }} Error Report</h1> --}}
-                              <p class="f-fallback discount_body"> <strong>Status Code:</strong> <span>{{$data['status_code']}}</span> </p>
-                              <p class="f-fallback discount_body"> <strong>Access URL:</strong> <span>{{$data['access_url']}}</span> </p>
-
-                              <p class="f-fallback discount_body"><strong>Is Authenticated:</strong>   <span>{{$data['is_authenticated'] == '1' ? 'Yes' : 'No' }}</span> </p>
-                              @if ($data['is_authenticated'] == 'yes')
-                                <p class="f-fallback discount_body"><strong>ID:</strong>  <span>{{$data['id']}}</span> </p>
-                                <p class="f-fallback discount_body"><strong>Email:</strong>  <span>{{$data['email']}}</span> </p>
-                              @endif
-
+                                
                               @if (isset($data['message']))
                                 <p class="f-fallback discount_body"><strong>Message:</strong> <br>   <span>{{$data['message']}}</span> </p>
                               @endif
+
+                              {{-- <h1 class="f-fallback discount_heading"> {{ ucfirst(config('notifier.name')) }} Error Report</h1> --}}
+                              <p class="f-fallback discount_body"> <strong>File:</strong> <span>{{$data['file']}}</span> </p>
+                              <p class="f-fallback discount_body"> <strong>Line:</strong> <span>{{$data['line']}}</span> </p>
+                              <p class="f-fallback discount_body"> <strong>Access URL:</strong> <span>{{$data['access_url']}}</span> </p>
+
+                              <p class="f-fallback discount_body"><strong>Is Authenticated:</strong>   <span>{{$data['is_authenticated'] ? 'True' : 'False' }}</span> </p>
+                              <p class="f-fallback discount_body"><strong>ID:</strong>  <span>{{$data['id']}}</span> </p>
+                              <p class="f-fallback discount_body"><strong>Email:</strong>  <span>{{$data['email']}}</span> </p>
+
 
                               <p class="f-fallback discount_body"><strong>Trace:</strong> <br>   <span>{{$data['trace']}}</span> </p>
 

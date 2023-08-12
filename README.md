@@ -3,7 +3,8 @@
 
 This package sends you email and slack notification whenever 500 internal server errors happens in your application.
 This package only works for laravel 8 and 9
-  
+*This package works for both API and view based laravel project*
+
 
 ![alt text](https://img001.prntscr.com/file/img001/Zirxkel4QF-IDBFV5v1veA.png)
 
@@ -14,9 +15,11 @@ This package only works for laravel 8 and 9
 - If they are authenticated or not
 - User ID (If user is authenticated)
 - User email (If user is authenticated)
-- User error description message (After form is submitted)
-- Trace error (The file and line number of the error; *before and after form is submitted*)
-- Error status code
+- User error description message (After form is submitted, for a non view based App)
+- File Error (The actual file the error was associated with)
+- Line Number (The line number the error happened)
+- Trace error (The list of files associated with the error; *before and after form is submitted*)
+
 
 ## How to install
 
@@ -49,7 +52,7 @@ This package places the 500.blade.php file in the */views/errors/* folder after 
 
 If you already have a 500.blade.php file in your */views/errors* folder and you want to use this package; you should remove or move it to another folder.
 
-### Publish the vendor files
+### Publish the vendor files if your app is not API 
 
 ```
 php artisan vendor:publish --provider="ErrorNotifier\Notify\ErrorNotifierServiceProvider"

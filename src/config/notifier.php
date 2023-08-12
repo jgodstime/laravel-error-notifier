@@ -5,6 +5,7 @@ return [
     'redirect_url' => env('NOTIFIER_REDIRECT_URL', '/'),
     'instant' => env('NOTIFIER_INSTANT', true),
     'name' => env('NOTIFIER_FROM_NAME', config('app.name')),
+    'should_queue' => env('NOTIFIER_SHOULD_QUEUE', true),
 
     'channels' => [
 
