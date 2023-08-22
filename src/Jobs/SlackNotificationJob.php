@@ -87,7 +87,7 @@ class SlackNotificationJob implements ShouldQueue
                                 ],
                                 [
                                     "type" => "mrkdwn",
-                                    "text" => "*Is Authenticated:* {$isAuthenticated} "
+                                    "text" => "*Is Authenticated:* {$isAuthenticated}"
                                 ]
 
                             ]
