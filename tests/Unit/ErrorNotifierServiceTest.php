@@ -6,9 +6,10 @@ use ErrorNotifier\Notify\Http\Services\ErrorNotifierService;
 use ErrorNotifier\Notify\Jobs\SlackNotificationJob;
 use ErrorNotifier\Notify\Notifications\NotifierNotification;
 use ErrorNotifier\Notify\Tests\TestCase;
+use Illuminate\Log\Events\MessageLogged;
 use Illuminate\Notifications\SendQueuedNotifications;
 use Illuminate\Support\Facades\Bus;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use RuntimeException;
@@ -37,11 +38,11 @@ class ErrorNotifierServiceTest extends TestCase
         ]);
         Notification::fake();
         Bus::fake();
-        Log::spy();
+        Event::fake(MessageLogged::class);
 
         app(ErrorNotifierService::class)->sendInstantNotification(new RuntimeException('boom'));
 
-        Log::shouldHaveReceived('warning')->once();
+        Event::assertDispatched(MessageLogged::class, fn ($event) => $event->level === 'warning');
         Notification::assertNothingSent();
         Bus::assertNotDispatched(SlackNotificationJob::class);
     }

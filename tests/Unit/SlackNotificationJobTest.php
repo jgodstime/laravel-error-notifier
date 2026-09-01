@@ -4,8 +4,9 @@ namespace ErrorNotifier\Notify\Tests\Unit;
 
 use ErrorNotifier\Notify\Jobs\SlackNotificationJob;
 use ErrorNotifier\Notify\Tests\TestCase;
+use Illuminate\Log\Events\MessageLogged;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class SlackNotificationJobTest extends TestCase
 {
@@ -40,10 +41,10 @@ class SlackNotificationJobTest extends TestCase
     {
         config(['notifier.channels.slack.url' => 'https://hooks.slack.test/x']);
         Http::fake(['hooks.slack.test/*' => Http::response('nope', 500)]);
-        Log::spy();
+        Event::fake(MessageLogged::class);
 
         (new SlackNotificationJob($this->payload()))->handle();
 
-        Log::shouldHaveReceived('error')->once();
+        Event::assertDispatched(MessageLogged::class, fn ($event) => $event->level === 'error');
     }
 }
