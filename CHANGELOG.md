@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - The number of stack trace frames included in a report (previously hardcoded to 3) is now configurable via `NOTIFIER_TRACE_LIMIT` (`notifier.trace_limit` in config), still defaulting to 3.
 - Redesigned the optional 500-error feedback page (`resources/views/500.blade.php`) to match the new email's visual language. Same form `action` and hidden inputs as before — restyling it further is safe as long as those stay intact.
 - Rewrote the README to lead with the fact that this package works in any Laravel app (API-only included) with no required setup — the Blade feedback page is now clearly marked as an opt-in extra for apps that render views, rather than implied as a required step.
+- Fixed the CI matrix (all `prefer-lowest` cells and several `prefer-stable` ones were failing): added `guzzlehttp/guzzle` and `guzzlehttp/promises` as direct dependencies (the package calls `Http::post()` but never required Guzzle itself, so the lowest resolvable dependency set didn't always include it), disabled Composer's security-advisory install-blocking policy (`config.policy: false`) which was rejecting old-but-otherwise-valid `laravel/framework` patch releases during `--prefer-lowest`, and fixed a real type mismatch in `ErrorNotifierService` (concatenating two differently-shaped array collections) that Larastan only caught on an older PHPStan version.
 
 ## 1.1.2 and earlier
 

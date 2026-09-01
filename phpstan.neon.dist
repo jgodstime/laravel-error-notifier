@@ -7,3 +7,17 @@ parameters:
         - tests
     level: 5
     treatPhpDocTypesAsCertain: false
+    # The CI matrix resolves different larastan/PHPStan versions per Laravel
+    # version, and the view-string check below only fires on some of them —
+    # without this, an ignore rule that doesn't match on a given combo is
+    # itself treated as an error.
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # Larastan's view-string check only knows about views registered through
+        # Laravel's own config/view.php paths, not a namespace a package adds at
+        # runtime via Package::hasViews(). The "notifier::" view genuinely exists
+        # and renders correctly (see the rest of this test) on every supported
+        # Laravel version — this is a static-analysis blind spot, not a real bug.
+        -
+            message: '#Parameter \#1 \$view of function view expects view\-string\|null, string given\.#'
+            path: tests/Feature/ServiceProviderTest.php

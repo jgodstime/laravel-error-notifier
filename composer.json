@@ -18,6 +18,8 @@
     },
     "require": {
         "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.5|^8.0",
+        "guzzlehttp/promises": "^2.0|^3.0",
         "illuminate/http": "^10.0|^11.0|^12.0|^13.0",
         "illuminate/notifications": "^10.0|^11.0|^12.0|^13.0",
         "illuminate/queue": "^10.0|^11.0|^12.0|^13.0",
@@ -65,7 +67,11 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
-        }
+        },
+        "audit": {
+            "abandoned": "ignore"
+        },
+        "policy": false
     },
     "minimum-stability": "stable",
     "prefer-stable": true

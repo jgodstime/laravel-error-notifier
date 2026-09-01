@@ -23,13 +23,14 @@ class ErrorNotifierService
             return;
         }
 
-        $errorLogs = collect([
-            [
+        $errorLogs = array_merge(
+            [[
                 'file' => $e->getFile(),
                 'line' => $e->getLine(),
                 'code' => $e->getCode(),
-            ],
-        ])->concat(collect($e->getTrace())->take(config('notifier.trace_limit', 3)))->toArray();
+            ]],
+            array_slice($e->getTrace(), 0, config('notifier.trace_limit', 3))
+        );
 
         $data['is_authenticated'] = auth()->check() ? true : false;
         $data['id'] = auth()->check() ? auth()->id() : 'N/A';
