@@ -1,12 +1,13 @@
 <?php
+
 namespace ErrorNotifier\Notify\Exceptions;
 
 use RuntimeException;
 
-class EmailNotFound extends RunTimeException
+class EmailNotFound extends RuntimeException
 {
     public static function make(?string $name): self
     {
-        return new self("The notifier email is not found, make sure you have .env file with a variable named: NOTIFIER_EMAIL and a value");
+        return new self('The notifier email is not found, make sure you have .env file with a variable named: NOTIFIER_EMAIL and a value');
     }
 }

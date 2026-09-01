@@ -1,6 +1,6 @@
 <?php
-namespace ErrorNotifier\Notify\Http\Requests;
 
+namespace ErrorNotifier\Notify\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -15,7 +15,6 @@ class ErrorNotifierRequest extends FormRequest
     {
         return true;
     }
-
 
     /**
      * Get the validation rules that apply to the request.

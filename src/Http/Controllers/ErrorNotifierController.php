@@ -1,9 +1,10 @@
 <?php
+
 namespace ErrorNotifier\Notify\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use ErrorNotifier\Notify\Http\Requests\ErrorNotifierRequest;
 use ErrorNotifier\Notify\Http\Services\ErrorNotifierService;
+use Illuminate\Routing\Controller;
 
 class ErrorNotifierController extends Controller
 {
@@ -14,16 +15,13 @@ class ErrorNotifierController extends Controller
         $this->errorNotifierService = $errorNotifierService;
     }
 
-
     public function index($statusCode = 500)
     {
-        return  view("notifier::{$statusCode}");
+        return view("notifier::{$statusCode}");
     }
-
 
     public function sendNotification(ErrorNotifierRequest $request)
     {
-       return $this->errorNotifierService->sendNotification($request->validated());
+        return $this->errorNotifierService->sendNotification($request->validated());
     }
-
 }
