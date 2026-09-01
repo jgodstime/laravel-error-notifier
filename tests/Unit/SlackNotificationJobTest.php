@@ -40,8 +40,10 @@ class SlackNotificationJobTest extends TestCase
     {
         config(['notifier.channels.slack.url' => 'https://hooks.slack.test/x']);
         Http::fake(['hooks.slack.test/*' => Http::response('nope', 500)]);
-        Log::shouldReceive('error')->once();
+        Log::spy();
 
         (new SlackNotificationJob($this->payload()))->handle();
+
+        Log::shouldHaveReceived('error')->once();
     }
 }

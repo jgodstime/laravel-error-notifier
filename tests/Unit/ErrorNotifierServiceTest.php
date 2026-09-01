@@ -37,10 +37,11 @@ class ErrorNotifierServiceTest extends TestCase
         ]);
         Notification::fake();
         Bus::fake();
-        Log::shouldReceive('warning')->once();
+        Log::spy();
 
         app(ErrorNotifierService::class)->sendInstantNotification(new RuntimeException('boom'));
 
+        Log::shouldHaveReceived('warning')->once();
         Notification::assertNothingSent();
         Bus::assertNotDispatched(SlackNotificationJob::class);
     }

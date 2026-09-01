@@ -21,3 +21,9 @@ parameters:
         -
             message: '#Parameter \#1 \$view of function view expects view\-string\|null, string given\.#'
             path: tests/Feature/ServiceProviderTest.php
+        # shouldHaveReceived() is added at runtime by Mockery's spy (via
+        # Log::spy()), not part of the Facade's declared static API, so
+        # Larastan doesn't know about it. Confirmed working at runtime.
+        -
+            message: '#Call to an undefined static method Illuminate\\Support\\Facades\\Log::shouldHaveReceived\(\)\.#'
+            path: tests/Unit/*Test.php
